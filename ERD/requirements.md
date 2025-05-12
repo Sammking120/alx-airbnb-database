@@ -4,41 +4,41 @@
 This document outlines the functional and non-functional requirements for the database system of an Airbnb-like platform. The system is designed to manage users, properties, bookings, payments, reviews, and messages efficiently.
 
 ## Functional Requirements
-  1. User Management
-   * The system must store user information, including:
-       * user_id: Unique identifier for each user (UUID).
-       * first_name and last_name: User's name (non-null).
-       * email: Unique and non-null for each user.
-       * password_hash: Encrypted password for authentication.
-       * phone_number: Optional contact number.
-       * role: Defines the user's role (guest, host, or admin).
-       * created_at: Timestamp of user creation.
+ 1. User Management
+     * The system must store user information, including:
+         * user_id: Unique identifier for each user (UUID).
+         * first_name and last_name: User's name (non-null).
+         * email: Unique and non-null for each user.
+         * password_hash: Encrypted password for authentication.
+         * phone_number: Optional contact number.
+         * role: Defines the user's role (guest, host, or admin).
+         * created_at: Timestamp of user creation.
   2. Property Management
-   * The system must allow hosts to list properties with the following details:
-       * property_id: Unique identifier for each property (UUID).
-       * host_id: Foreign key referencing the user_id of the host.
-       * name: Name of the property (non-null).
-       * description: Detailed description of the property (non-null).
-       * location: Address or location of the property (non-null).
-       * pricepernight: Cost per night for booking (non-null).
-       * created_at: Timestamp of property creation.
-       * updated_at: Timestamp of the last update.
+      * The system must allow hosts to list properties with the following details:
+         * property_id: Unique identifier for each property (UUID).
+         * host_id: Foreign key referencing the user_id of the host.
+         * name: Name of the property (non-null).
+         * description: Detailed description of the property (non-null).
+         * location: Address or location of the property (non-null).
+         * pricepernight: Cost per night for booking (non-null).
+         * created_at: Timestamp of property creation.
+         * updated_at: Timestamp of the last update.
   3. Booking Management
-    * The system must allow users to book properties with the following details:
-        * booking_id: Unique identifier for each booking (UUID).
-        * property_id: Foreign key referencing the property being booked.
-        * user_id: Foreign key referencing the user making the booking.
-        * start_date and end_date: Dates for the booking period (non-null).
-        * total_price: Total cost of the booking (non-null).
-        * status: Booking status (pending, confirmed, or canceled).
-        * created_at: Timestamp of booking creation.
+      * The system must allow users to book properties with the following details:
+          * booking_id: Unique identifier for each booking (UUID).
+          * property_id: Foreign key referencing the property being booked.
+          * user_id: Foreign key referencing the user making the booking.
+          * start_date and end_date: Dates for the booking period (non-null).
+          * total_price: Total cost of the booking (non-null).
+          * status: Booking status (pending, confirmed, or canceled).
+          * created_at: Timestamp of booking creation.
   4. Payment Management
-    * The system must handle payments for bookings with the following details:
-        * payment_id: Unique identifier for each payment (UUID).
-        * booking_id: Foreign key referencing the associated booking.
-        * amount: Payment amount (non-null).
-        * payment_date: Timestamp of the payment.
-        * payment_method: Payment method (credit_card, paypal, or stripe).
+      * The system must handle payments for bookings with the following details:
+          * payment_id: Unique identifier for each payment (UUID).
+          * booking_id: Foreign key referencing the associated booking.
+          * amount: Payment amount (non-null).
+          * payment_date: Timestamp of the payment.
+          * payment_method: Payment method (credit_card, paypal, or stripe).
    5. Review Management
       * The system must allow users to leave reviews for properties with the following details:
           * review_id: Unique identifier for each review (UUID).
