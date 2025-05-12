@@ -36,7 +36,7 @@ Normalization is the process of organizing data in a database to reduce redundan
   * The database must first meet 3NF.
   * Every determinant must be a candidate key.
  
-  **Implementation in the Schema:**
+    **Implementation in the Schema:**
   * All tables are designed such that every determinant is a candidate key. For example, in the User table, email is unique and acts as a determinant for identifying users.
 ## Table Relationships
 1. **User** Table
