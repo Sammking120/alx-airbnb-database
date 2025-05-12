@@ -80,16 +80,16 @@ This document outlines the functional and non-functional requirements for the da
     * Belong to a host (user).
     * Can be booked by users.
     * Can receive reviews from users.
-  3. Bookings
+ 3. Bookings
     * Link users and properties.
     * Can have associated payments.
-  4. Payments
+ 4. Payments
     * Link to bookings.
     * Store payment details.
-  5. Reviews
+ 5. Reviews
     * Link users and properties.
     * Contain feedback and ratings.
-  6. Messages
+ 6. Messages
     * Link users (sender and recipient).
     * Store communication details.
 ## Conclusion
