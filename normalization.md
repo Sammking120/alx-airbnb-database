@@ -2,21 +2,22 @@
 Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. This document explains how the database schema for the Airbnb-like system has been normalized to achieve a high level of efficiency and maintainability.
 
 ## Normalization Levels
-  **1. First Normal Form (1NF)**
+ **1. First Normal Form (1NF)**
   To satisfy 1NF:
   * Each table has a primary key to uniquely identify each record.
   * All columns contain atomic values (no repeating groups or arrays).
   * Each column contains values of a single type.
   
-  **Implementation in the Schema:** 
+    **Implementation in the Schema:** 
   * Each table (e.g., User, Property, Booking, Payment, Review, Message) has a primary key (user_id, property_id, booking_id, etc.).
   * All attributes are atomic, such as first_name, last_name, email, and role in the User table.
-  **2. Second Normal Form (2NF)**
+ 
+ **2. Second Normal Form (2NF)**
   To satisfy 2NF:
   * The database must first meet 1NF.
   * All non-key attributes must depend on the entire primary key, not just part of it.
 
- **Implementation in the Schema:**
+    **Implementation in the Schema:**
   * Composite keys are avoided by using UUIDs as primary keys for all tables.
   * For example, in the Booking table, attributes like start_date, end_date, and total_price depend entirely on the booking_id (primary key).
 
@@ -25,17 +26,17 @@ Normalization is the process of organizing data in a database to reduce redundan
   * The database must first meet 2NF.
   * All attributes must depend only on the primary key, and there should be no transitive dependencies.
 
-**Implementation in the Schema:**
+    **Implementation in the Schema:**
   * In the **User** table, attributes like **email** and **role** depend only on **user_id**.
   * In the **Property** table, attributes like **name**, **description**, and **location** depend only on **property_id**.
   * Foreign keys are used to establish relationships between tables, ensuring no redundant data.
   
- **4. Boyce-Codd Normal Form (BCNF)**
+**4. Boyce-Codd Normal Form (BCNF)**
   To satisfy BCNF:
   * The database must first meet 3NF.
   * Every determinant must be a candidate key.
  
- **Implementation in the Schema:**
+  **Implementation in the Schema:**
   * All tables are designed such that every determinant is a candidate key. For example, in the User table, email is unique and acts as a determinant for identifying users.
 ## Table Relationships
 1. **User** Table
