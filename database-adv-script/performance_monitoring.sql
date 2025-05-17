@@ -1,3 +1,4 @@
+--QUery 1
 EXPLAIN ANALYZE
 SELECT 
     b.booking_id,
@@ -67,3 +68,25 @@ ORDER BY
 LIMIT 100 OFFSET 0;
 SHOW PROFILE;
 SET profiling = 0;
+
+---Query 2
+EXPLAIN ANALYZE
+SELECT 
+    p.property_id,
+    p.title,
+    p.location,
+    COUNT(b.booking_id) AS booking_count
+FROM 
+    properties p
+LEFT JOIN 
+    bookings b 
+    ON p.property_id = b.property_id
+WHERE 
+    b.check_in_date >= '2025-01-01' 
+    AND b.check_in_date < '2026-01-01'
+    OR b.check_in_date IS NULL
+GROUP BY 
+    p.property_id, p.title, p.location
+ORDER BY 
+    booking_count DESC
+LIMIT 10;
