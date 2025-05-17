@@ -78,3 +78,5 @@ Summary of High-Usage Columns
 * Performance:
     * Columns in WHERE and JOIN conditions (e.g., user_id, property_id) are performance-critical, as they affect query execution plans.
     * Ensure proper foreign key constraints to maintain data integrity, especially for user_id and property_id.
+
+Adding the idx_reviews_property_id index significantly improves the query’s performance by replacing a sequential scan with an index scan and enabling a faster merge join. The execution time drops from ~155 ms to ~25 ms in the example, with similar cost reductions. You can verify this by running EXPLAIN ANALYZE before and after creating the index, checking for reduced execution times and optimized scan/join methods.
