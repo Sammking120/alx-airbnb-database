@@ -15,6 +15,8 @@ INNER JOIN
     users u 
 ON 
     b.user_id = u.user_id;
+ORDER BY 
+    b.check_in_date ASC;
 
 --Write a query using aLEFT JOIN to retrieve all properties and their reviews, including properties that have no reviews.
 SELECT 
