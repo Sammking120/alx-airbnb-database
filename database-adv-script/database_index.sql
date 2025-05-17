@@ -41,3 +41,84 @@ CREATE INDEX idx_reviews_rating ON reviews (rating);
 
 -- Index for review_date (used in WHERE for temporal filtering)
 CREATE INDEX idx_reviews_review_date ON reviews (review_date);
+
+-- Drop the index on reviews.property_id (if it exists)
+DROP INDEX IF EXISTS idx_reviews_property_id;
+
+
+Run EXPLAIN to analyze the query plan:
+EXPLAIN
+SELECT 
+    p.property_id,
+    p.title,
+    p.location,
+    r.review_id,
+    r.rating,
+    r.comment,
+    r.review_date
+FROM 
+    properties p
+LEFT JOIN 
+    reviews r 
+ON 
+    p.property_id = r.property_id
+ORDER BY 
+    p.property_id ASC;
+
+
+EXPLAIN ANALYZE
+SELECT
+p.property_id,
+    p.title,
+    p.location,
+    r.review_id,
+    r.rating,
+    r.comment,
+    r.review_date
+FROM 
+    properties p
+LEFT JOIN 
+    reviews r 
+ON 
+    p.property_id = r.property_id
+ORDER BY 
+    p.property_id ASC;
+
+--- Run EXPLAIN After Adding Index
+--Run EXPLAIN again to check the updated query plan:
+
+EXPLAIN
+SELECT 
+    p.property_id,
+    p.title,
+    p.location,
+    r.review_id,
+    r.rating,
+    r.comment,
+    r.review_date
+FROM 
+    properties p
+LEFT JOIN 
+    reviews r 
+ON 
+    p.property_id = r.property_id
+ORDER BY 
+    p.property_id ASC;
+
+EXPLAIN ANALYZE
+SELECT
+p.property_id,
+    p.title,
+    p.location,
+    r.review_id,
+    r.rating,
+    r.comment,
+    r.review_date
+FROM 
+    properties p
+LEFT JOIN 
+    reviews r 
+ON 
+    p.property_id = r.property_id
+ORDER BY 
+    p.property_id ASC;
