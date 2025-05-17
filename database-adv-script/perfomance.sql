@@ -377,7 +377,7 @@ INNER JOIN
 INNER JOIN 
     properties p 
     ON b.property_id = p.property_id
-INNER JOIN (
+LEFT JOIN (
     SELECT booking_id, payment_id, payment_status
     FROM (
         SELECT 
@@ -386,14 +386,17 @@ INNER JOIN (
             payment_status,
             ROW_NUMBER() OVER (PARTITION BY booking_id ORDER BY payment_date DESC) AS rn
         FROM payments
+        WHERE payment_status = 'completed'  -- Filter in subquery
     ) ranked
     WHERE rn = 1
 ) pay 
     ON b.booking_id = pay.booking_id
+WHERE 
+    b.check_in_date >= '2025-01-01' 
+    AND b.check_in_date < '2026-01-01'
 ORDER BY 
     b.booking_id ASC
 LIMIT 100 OFFSET 0;
-
 -- Ensure these indexes exist:
 CREATE INDEX idx_bookings_user_id_booking_id ON bookings (user_id, booking_id);
 CREATE INDEX idx_bookings_property_id ON bookings (property_id);
